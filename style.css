@@ -1,0 +1,35 @@
+* {
+    background-color: aquamarine;
+}
+
+.calculator {
+   background: lightgrey;
+   width: max-content;
+   margin: auto;
+}
+
+.display {
+    width: 100%;
+    background-color: darkgrey;
+    height: 50px;
+    font-size: 48px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.buttons {
+    max-width: 500px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+button {
+    flex: 1 25%;
+    height: 80px;
+    border-radius: 10px;
+}
+
+.bigbtn {
+    flex: 1 50%;
+}
+
