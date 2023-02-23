@@ -1,5 +1,6 @@
 const buttons = document.querySelectorAll('.btn-number, .btn-operator');
 const display = document.querySelector('.display');
+const equalsButton = document.querySelector('.btn-equals');
 
 let displayData = "";
 
@@ -10,6 +11,19 @@ buttons.forEach(button => {
         display.textContent = displayData;
     })
 })
+
+// buttons.forEach(button => {
+//     button.addEventListener('click', () => {
+//         if (num1 = null) {
+//             num1 = button.getAttribute('data-num');
+//         } else 
+//     })
+// })
+
+equalsButton.addEventListener('click', () => {
+
+} )
+
 function addNum(num1, num2) {
     return(num1 + num2);
 }
