@@ -21,10 +21,26 @@ numButtons.forEach((button) => {
     display.textContent = displayData;
     if (operatorPressed === true) {
       num2 = displayData;
+    // } else if (equalsPressed === true) {
+    //   num1 = 0;
+    //   displayData = "";
+    //   num2 = displayData;
+    //   display.textContent = displayData;
     } else {
       num1 = displayData;
     }
-    console.log("num1 is " + num1 + " " + "num2 is " + num2);
+
+    // ^^ This almost works, might just be doing things in the wrong order. need to cleat the displayData first.
+
+    // if (equalsPressed === true) {
+    //     displayData = "";
+    //     num2 = displayData;
+    // } else {
+    //     displayData = "";
+    //     num1 = displayData;
+    //     equalsPressed = false;
+    // }
+    // console.log("num1 is " + num1 + " " + "num2 is " + num2);
   });
 });
 
@@ -43,14 +59,20 @@ opButtons.forEach((opButton) => {
 equalsButton.addEventListener("click", () => {
   num1 = parseFloat(num1);
   num2 = parseFloat(num2);
-  displayData = operate(operator, num1, num2);
-  display.textContent = displayData;
-  console.log(num1, operator, num2);
+  if (operator === "/" && num2 === 0) {
+    display.textContent = "Nice try!";
+  } else {
+    displayData = operate(operator, num1, num2);
+    display.textContent = displayData;
+    console.log(num1, operator, num2);
+    num1 = displayData; // Test for after equals button presses
+    equalsPressed = true;
+  }
 });
 
 clearButton.addEventListener("click", () => {
-    clearCalc();
-    display.textContent = displayData;
+  clearCalc();
+  display.textContent = displayData;
 });
 
 function addNum(num1, num2) {
