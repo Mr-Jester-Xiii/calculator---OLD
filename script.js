@@ -9,16 +9,10 @@ let operatorPressed = false;
 let equalsPressed = false;
 let num1 = 0;
 let num2 = 0;
+let operator = "";
 
 // Working event listener to populate display with button values
-//
-// buttons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         let buttonValue = button.getAttribute('data-num');
-//         displayData += buttonValue;
-//         display.textContent = displayData;
-//     })
-// })
+
 
 numButtons.forEach(button => {
     button.addEventListener('click', () => {
@@ -30,13 +24,14 @@ numButtons.forEach(button => {
         } else {
             num1 = displayData;
         }
-        console.log("num1 is " + num1 + "num2 is " + num2)
+        console.log("num1 is " + num1 + " " + "num2 is " + num2);
     })
 })
 
 opButtons.forEach(opButton => {
     opButton.addEventListener('click', () => {
         let buttonValue = opButton.getAttribute('data-num');
+        operator = buttonValue;
         displayData += buttonValue;
         display.textContent = displayData;
         operatorPressed = true;
@@ -47,7 +42,11 @@ opButtons.forEach(opButton => {
 
 
 equalsButton.addEventListener('click', () => {
-
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
+    calcResult = operate(operator, num1, num2);
+    console.log(num1, operator, num2);
+    console.log(calcResult);
 } )
 
 function addNum(num1, num2) {
@@ -58,7 +57,7 @@ function subtractNum(num1, num2){
     return(num1 - num2);
 }
 
-function multiplyNum(num1, num2){
+function multiplnum2Num(num1, num2){
     return(num1 * num2);
 }
 
@@ -68,28 +67,28 @@ function divideNum(num1, num2){
 
 function operate(operator, num1, num2){
     switch(operator) {
-        case "+":
+        case '+':
             addNum(num1, num2);
             break;
 
-        case "-":
+        case '-':
             subtractNum(num1, num2);
             break;
 
-        case "*":
+        case '*':
             multiplyNum(num1, num2);
             break
 
-        case "/":
+        case '/':
             divideNum(num1, num2);
     }
 }
 
-function test() {
-    num1 = parseFloat(prompt("Number 1", ""));
-    operator = prompt("+, -, * or /");
-    num2 = parseFloat(prompt("Number 2", ""));
-    operate(operator, num1, num2);
-}
+// function test() {
+//     num1 = parseFloat(prompt("Number 1", ""));
+//     operator = prompt("+, -, * or /");
+//     num2 = parseFloat(prompt("Number 2", ""));
+//     operate(operator, num1, num2);
+// }
 
 // test();
