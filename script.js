@@ -10,6 +10,7 @@ let equalsPressed = false;
 let num1 = 0;
 let num2 = 0;
 let operator = "";
+let result = 0;
 
 // Working event listener to populate display with button values
 
@@ -44,25 +45,29 @@ opButtons.forEach(opButton => {
 equalsButton.addEventListener('click', () => {
     num1 = parseFloat(num1);
     num2 = parseFloat(num2);
-    calcResult = operate(operator, num1, num2);
+    displayData = operate(operator, num1, num2);
+    display.textContent = displayData;
     console.log(num1, operator, num2);
-    console.log(calcResult);
 } )
 
 function addNum(num1, num2) {
-    return(num1 + num2);
+    result = (num1 + num2);
+    return result;
 }
 
 function subtractNum(num1, num2){
-    return(num1 - num2);
+    result = (num1 - num2);
+    return result;
 }
 
 function multiplnum2Num(num1, num2){
-    return(num1 * num2);
+    result = (num1 * num2);
+    return result;
 }
 
 function divideNum(num1, num2){
-    return(num1 / num2);
+    result = (num1 / num2);
+    return result;
 }
 
 function operate(operator, num1, num2){
@@ -81,7 +86,11 @@ function operate(operator, num1, num2){
 
         case '/':
             divideNum(num1, num2);
+            break
     }
+    return result;
+
+    
 }
 
 // function test() {
