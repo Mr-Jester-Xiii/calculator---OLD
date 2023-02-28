@@ -1,24 +1,50 @@
-const buttons = document.querySelectorAll('.btn-number, .btn-operator');
+const numButtons = document.querySelectorAll('.btn-number');
+const opButtons = document.querySelectorAll('.btn-operator');
 const display = document.querySelector('.display');
 const equalsButton = document.querySelector('.btn-equals');
 
-let displayData = "";
 
-buttons.forEach(button => {
+let displayData = "";
+let operatorPressed = false;
+let equalsPressed = false;
+let num1 = 0;
+let num2 = 0;
+
+// Working event listener to populate display with button values
+//
+// buttons.forEach(button => {
+//     button.addEventListener('click', () => {
+//         let buttonValue = button.getAttribute('data-num');
+//         displayData += buttonValue;
+//         display.textContent = displayData;
+//     })
+// })
+
+numButtons.forEach(button => {
     button.addEventListener('click', () => {
         let buttonValue = button.getAttribute('data-num');
         displayData += buttonValue;
         display.textContent = displayData;
+        if (operatorPressed === true) {
+            num2 = displayData;
+        } else {
+            num1 = displayData;
+        }
+        console.log("num1 is " + num1 + "num2 is " + num2)
     })
 })
 
-// buttons.forEach(button => {
-//     button.addEventListener('click', () => {
-//         if (num1 = null) {
-//             num1 = button.getAttribute('data-num');
-//         } else 
-//     })
-// })
+opButtons.forEach(opButton => {
+    opButton.addEventListener('click', () => {
+        let buttonValue = opButton.getAttribute('data-num');
+        displayData += buttonValue;
+        display.textContent = displayData;
+        operatorPressed = true;
+        displayData = "";
+        console.log(operatorPressed);
+    })
+})
+
 
 equalsButton.addEventListener('click', () => {
 
