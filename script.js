@@ -54,16 +54,18 @@ opButtons.forEach((opButton) => {
 equalsButton.addEventListener("click", () => {
   num1 = parseFloat(num1);
   num2 = parseFloat(num2);
-  if (operator === "/" && num2 === 0) {
-    display.textContent = "Nice try!";
-  } else {
-    displayData = operate(operator, num1, num2);
-    display.textContent = displayData;
-    console.log(num1, operator, num2);
-    num1 = displayData; // Test for after equals button presses
-    equalsPressed = true;
-  }
-});
+    if (operator === "/" && num2 === 0) {
+      display.textContent = "Nice try!";
+    } else {
+      displayData = operate(operator, num1, num2);
+      display.textContent = displayData;
+      console.log(num1, operator, num2);
+      num1 = displayData; // Test for after equals button presses
+      equalsPressed = true;
+    }
+  });
+  
+ 
 
 decimalButton.addEventListener("click", () => {
   if (displayData.includes(".")) {
