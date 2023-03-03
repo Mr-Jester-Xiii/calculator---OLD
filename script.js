@@ -3,6 +3,9 @@ const opButtons = document.querySelectorAll(".btn-operator");
 const display = document.querySelector(".display");
 const equalsButton = document.querySelector(".btn-equals");
 const clearButton = document.getElementById("clear");
+const decimalButton = document.querySelector(".btn-decimal");
+const deleteButton = document.getElementById("delete");
+
 
 let displayData = "";
 let operatorPressed = false;
@@ -12,7 +15,7 @@ let num2 = 0;
 let operator = "";
 let result = 0;
 
-// Working event listener to populate display with button values
+// Buttons to fill display with button values
 
 numButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -29,20 +32,10 @@ numButtons.forEach((button) => {
     } else {
       num1 = displayData;
     }
-
-    // ^^ This almost works, might just be doing things in the wrong order. need to cleat the displayData first.
-
-    // if (equalsPressed === true) {
-    //     displayData = "";
-    //     num2 = displayData;
-    // } else {
-    //     displayData = "";
-    //     num1 = displayData;
-    //     equalsPressed = false;
-    // }
-    // console.log("num1 is " + num1 + " " + "num2 is " + num2);
   });
 });
+
+// Buttons to select operator, and fill button values
 
 opButtons.forEach((opButton) => {
   opButton.addEventListener("click", () => {
@@ -55,6 +48,8 @@ opButtons.forEach((opButton) => {
     console.log(operatorPressed);
   });
 });
+
+//
 
 equalsButton.addEventListener("click", () => {
   num1 = parseFloat(num1);
@@ -70,8 +65,26 @@ equalsButton.addEventListener("click", () => {
   }
 });
 
+decimalButton.addEventListener("click", () => {
+  if (displayData.includes(".")) {
+    // Do nothing
+  } else {
+    let buttonValue = decimalButton.getAttribute("data-num");
+    displayData += buttonValue;
+    display.textContent = displayData;
+  }
+})
+
+// ^^^ This alters the string and the display, but does not update the number.
+ 
+
 clearButton.addEventListener("click", () => {
   clearCalc();
+  display.textContent = displayData;
+});
+
+deleteButton.addEventListener("click", () => {
+  displayData = displayData.substring(0, displayData.length-1);
   display.textContent = displayData;
 });
 
@@ -113,7 +126,7 @@ function operate(operator, num1, num2) {
       divideNum(num1, num2);
       break;
   }
-  return result;
+  return Math.round((result + Number.EPSILON) * 10000 ) / 10000; // Round to 4 decimal places
 }
 
 function clearCalc() {
@@ -125,12 +138,3 @@ function clearCalc() {
   operator = "";
   result = 0;
 }
-
-// function test() {
-//     num1 = parseFloat(prompt("Number 1", ""));
-//     operator = prompt("+, -, * or /");
-//     num2 = parseFloat(prompt("Number 2", ""));
-//     operate(operator, num1, num2);
-// }
-
-// test();
